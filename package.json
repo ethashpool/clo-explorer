@@ -1,9 +1,8 @@
 {
-  "name": "EthereumClassicExplorer",
-  "private": false,
-  "version": "0.2.0",
-  "description": "A lightweight ethereum classic block explorer",
-  "repository": "https://github.com/ethereumproject/explorer",
+  "name": "etsc-explorer",
+  "version": "1.0.0",
+  "description": "An ethereum social block explorer",
+  "repository": "https://github.com/ethereumsocial/explorer",
   "license": "MIT",
   "scripts": {
     "start": "concurrently \"node tools/sync.js \" \"node app.js\" ",

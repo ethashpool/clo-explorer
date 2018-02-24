@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /*
     Endpoint for client to talk to etc node
 */
@@ -95,7 +94,6 @@ exports.data = function(req, res){
         });
       }
     });
-
   } else if ("tx_trace" in req.body) {
     var txHash = req.body.tx_trace.toLowerCase();
 
@@ -111,8 +109,8 @@ exports.data = function(req, res){
   } else if ("addr_trace" in req.body) {
     var addr = req.body.addr_trace.toLowerCase();
     // need to filter both to and from
-    // from block to end block, paging "toAddress":[addr], 
-    // start from creation block to speed things up 
+    // from block to end block, paging "toAddress":[addr],
+    // start from creation block to speed things up
     // TODO: store creation block
     var filter = {"fromBlock":"0x1d4c00", "toAddress":[addr]};
     web3.trace.filter(filter, function(err, tx) {
@@ -123,7 +121,7 @@ exports.data = function(req, res){
         res.write(JSON.stringify(filterTrace(tx)));
       }
       res.end();
-    }) 
+    })
   } else if ("addr" in req.body) {
     var addr = req.body.addr.toLowerCase();
     var options = req.body.options;
@@ -132,7 +130,7 @@ exports.data = function(req, res){
 
     if (options.indexOf("balance") > -1) {
       try {
-        addrData["balance"] = web3.eth.getBalance(addr);  
+        addrData["balance"] = web3.eth.getBalance(addr);
         addrData["balance"] = etherUnits.toEther(addrData["balance"], 'wei');
       } catch(err) {
         console.error("AddrWeb3 error :" + err);
@@ -150,7 +148,7 @@ exports.data = function(req, res){
     if (options.indexOf("bytecode") > -1) {
       try {
          addrData["bytecode"] = web3.eth.getCode(addr);
-         if (addrData["bytecode"].length > 2) 
+         if (addrData["bytecode"].length > 2)
             addrData["isContract"] = true;
          else
             addrData["isContract"] = false;
@@ -159,11 +157,8 @@ exports.data = function(req, res){
         addrData = {"error": true};
       }
     }
-   
     res.write(JSON.stringify(addrData));
     res.end();
-
-
   } else if ("block" in req.body) {
     var blockNumOrHash;
     if (/^(0x)?[0-9a-f]{64}$/i.test(req.body.block.trim())) {
@@ -171,7 +166,6 @@ exports.data = function(req, res){
     } else {
         blockNumOrHash = parseInt(req.body.block);
     }
-
     web3.eth.getBlock(blockNumOrHash, function(err, block) {
       if(err || !block) {
         console.error("BlockWeb3 error :" + err)
@@ -182,7 +176,7 @@ exports.data = function(req, res){
       res.end();
     });
 
-    /* 
+    /*
     / TODO: Refactor, "block" / "uncle" determinations should likely come later
     / Can parse out the request once and then determine the path.
     */
@@ -251,7 +245,6 @@ exports.data = function(req, res){
     console.error("Invalid Request: " + action)
     res.status(400).send();
   }
-
 };
 
 exports.eth = web3.eth;

@@ -2,25 +2,24 @@
     "nodeAddr":     "localhost",
     "gethPort":     8545,
     "startBlock":   0,
+    "endBlock":     "latest",
     "quiet":        true,
     "syncAll":      true,
     "patch":        true,
     "patchBlocks":  100,
     "settings": {
-        "symbol": "ETC",
-        "name": "Ethereum Classic",
-        "title": "Ethereum Classic Block Explorer",
-        "author": "Elaine",
+        "symbol": "ETSC",
+        "name": "Ethereum Social",
+        "title": "Ethereum Social Block Explorer",
+        "author": "Ethereum Social Community",
         "miners": {
-           "0xdf7d7e053933b5cc24372f878c90e62dadad5d42": "EtherMine",
-           "0xc91716199ccde49dc4fafaeb68925127ac80443f": "F2Pool",
-           "0x9eab4b0fc468a7f5d46228bf5a76cb52370d068d": "NanoPool",
-           "0x8c5535afdbdeea80adedc955420f684931bf91e0": "MiningPoolHub",
-           "0x4750e296949b747df1585aa67beee8be903dd560": "UUPool",
-           "0xef224fa5fad302b51f38898f4df499d7af127af0": "91pool",
-           "0x00d29bfdf5f8d2d0466da4b948f37692ca50867a": "2miners",
-           "0x4c2b4e716883a2c3f6b980b70b577e54b9441060": "ETCPool PL",
-           "0xd144e30a0571aaf0d0c050070ac435deba461fab": "Clona Network"
+           "0x666c8a0d7219320f06907faa3bbaa400063d6b78": "pool.ethereumsocial.kr",
+           "0xb5e9b00fc2b3eba36c26c8c81f0b6bb41f40354d": "etsc.reversegainz.info",
+           "0x776808e7688432755b9e91a838410d29e532c624": "etscpool.gominer.cn",
+           "0xf35074bbd0a9aee46f4ea137971feec024ab704e": "etsc.solopool.org",
+           "0x11905bd0863ba579023f662d1935e39d0c671933": "comining.io",
+           "0x468fc6329d2825bf28c44aa1bc6d40a4dda96f65": "etsc.altpool.pro",
+           "0x814399490a89438e3faa342f8b908f1aeaeddd73": "etsc.mole-pool.net"
         }
     }
 }

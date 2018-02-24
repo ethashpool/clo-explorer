@@ -16,9 +16,9 @@ module.exports = function(app){
   var fiat = require('./fiat');
   var stats = require('./stats');
 
-  /* 
+  /*
     Local DB: data request format
-    { "address": "0x1234blah", "txin": true } 
+    { "address": "0x1234blah", "txin": true }
     { "tx": "0x1234blah" }
     { "block": "1234" }
   */
@@ -26,9 +26,10 @@ module.exports = function(app){
   app.post('/tx', getTx);
   app.post('/block', getBlock);
   app.post('/data', getData);
+  app.get('/total', getTotal);
 
   app.post('/daorelay', DAO);
-  app.post('/tokenrelay', Token);  
+  app.post('/tokenrelay', Token);
   app.post('/web3relay', web3relay.data);
   app.post('/compile', compile);
 
@@ -46,13 +47,13 @@ var getAddr = function(req, res){
 
   var data = { draw: parseInt(req.body.draw), recordsFiltered: count, recordsTotal: count };
 
-  var addrFind = Transaction.find( { $or: [{"to": addr}, {"from": addr}] })  
+  var addrFind = Transaction.find( { $or: [{"to": addr}, {"from": addr}] })
 
   addrFind.lean(true).sort('-blockNumber').skip(start).limit(limit)
           .exec("find", function (err, docs) {
             if (docs)
-              data.data = filters.filterTX(docs, addr);      
-            else 
+              data.data = filters.filterTX(docs, addr);
+            else
               data.data = [];
             res.write(JSON.stringify(data));
             res.end();
@@ -106,15 +107,26 @@ var getData = function(req, res){
     if (isNaN(limit))
       var lim = MAX_ENTRIES;
     else
-      var lim = parseInt(limit);  
+      var lim = parseInt(limit);
     DATA_ACTIONS[action](lim, res);
-  } else { 
+  } else {
     console.error("Invalid Request: " + action)
     res.status(400).send();
   }
 };
 
-/* 
+var getTotal = function(req, res) {
+  var block = Block.findOne({}, "number")
+                      .lean(true).sort('-number');
+  block.exec(function (err, doc) {
+    // res.write(JSON.stringify(doc));
+    var total = 1000000000 + (doc.number) * 50;
+    res.write(total.toString());
+    res.end();
+  });
+}
+
+/*
   temporary blockstats here
 */
 var latestBlock = function(req, res) {
@@ -124,7 +136,7 @@ var latestBlock = function(req, res) {
     res.write(JSON.stringify(doc));
     res.end();
   });
-} 
+}
 
 
 var getLatest = function(lim, res, callback) {
@@ -159,4 +171,3 @@ const DATA_ACTIONS = {
   "latest_blocks": sendBlocks,
   "latest_txs": sendTxs
 }
-

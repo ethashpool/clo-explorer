@@ -14,7 +14,7 @@ angular.module('BlocksApp').controller('HomeController', function($rootScope, $s
         method: 'POST',
         url: URL,
         data: {"action": "latest_blocks"}
-      }).success(function(data) {      
+      }).success(function(data) {
         $scope.latest_blocks = data.blocks;
         $scope.blockLoading = false;
       });
