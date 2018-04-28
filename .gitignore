@@ -41,7 +41,6 @@ data/
 package-lock.json
 public/js/stats/The_bomb_chart.js
 
-tools/config.json
 .node-xmlhttprequest-*
 public/css/.components.min.css.swp
 public/css/components.min.css.save

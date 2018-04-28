@@ -1,11 +1,11 @@
 {
-  "name": "etsc-explorer",
+  "name": "clo-explorer",
   "version": "1.0.0",
-  "description": "An ethereum social block explorer",
-  "repository": "https://github.com/ethereumsocial/explorer",
+  "description": "A Callisto Blockchain Explorer",
+  "repository": "https://github.com/chainkorea/clo-explorer",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"node tools/sync.js \" \"node app.js\" ",
+    "start": "concurrently \"node tools/sync.js \" ",
     "pretest": "copyfiles app.js app/  ",
     "test": "./node_modules/.bin/mocha --reporter spec  "
   },

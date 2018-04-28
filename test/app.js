@@ -3,7 +3,7 @@ var request = require("request");
 
 //tests for the express server
 
-describe("Social Explorer Server Tests", function() {
+describe("Callisto Explorer Server Tests", function() {
 
   //ping the index page
   describe("Test index page", function() {
@@ -14,7 +14,7 @@ describe("Social Explorer Server Tests", function() {
         done();
       });
     });
-    var badurl = "http://localhost:3000/ethereum_social_is_the_best_ethereum";
+    var badurl = "http://localhost:3000/clopool_net_is_the_best_callisto_mining_pool";
     it("bad pages go to index", function(done) {
       request(badurl, function(error, response, body) {
         expect(response.statusCode).to.equal(200);
