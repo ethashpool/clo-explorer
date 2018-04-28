@@ -200,7 +200,7 @@ exports.data = function(req, res){
       return;
     }
 
-    web3.eth.getUncle(blockNumOrHash, uncleIdx, function(err, uncle) {
+    web3.eth.getBlock(blockNumOrHash, uncleIdx, function(err, uncle) {
       if(err || !uncle) {
         console.error("UncleWeb3 error :" + err)
         res.write(JSON.stringify({"error": true}));
