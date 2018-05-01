@@ -88,7 +88,6 @@ var getAddr = function(req, res){
             res.write(JSON.stringify(data));
             res.end();
           });
-  });
 
 };
 var getBlock = function(req, res) {
