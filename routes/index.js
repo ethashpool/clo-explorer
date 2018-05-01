@@ -77,8 +77,6 @@ var getAddr = function(req, res){
     if (!err && results && results.length > 0) {
       data.mined = results[0].count;
     }
-  });
-
   addrFind.lean(true).sort(sortOrder).skip(start).limit(limit)
           .exec("find", function (err, docs) {
             if (docs)
@@ -88,6 +86,7 @@ var getAddr = function(req, res){
             res.write(JSON.stringify(data));
             res.end();
           });
+  });
 
 };
 var getBlock = function(req, res) {
